@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+//endLogin
+
+Route::middleware(['auth', 'admin'])->group(function () {
+Route::resource('/employee', 'EmployeeController');
+Route::resource('/tipos', 'TipoController');
+});
+Route::resource('/client', 'ClientController');
+//Promociones
+
+
+//Promociones
+Route::resource('/promociones', 'PromocionController');
